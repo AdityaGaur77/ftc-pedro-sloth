@@ -19,10 +19,35 @@ android {
     namespace = 'org.firstinspires.ftc.teamcode'
 
     packagingOptions {
+        jniLibs {
+            pickFirsts += ['**/*.so']
+        }
         jniLibs.useLegacyPackaging true
+    }
+}
+
+repositories {
+    maven {
+        url = "https://repo.dairy.foundation/releases"
     }
 }
 
 dependencies {
     implementation project(':FtcRobotController')
+
+    //Ftc dashboard (latest stuff as of 3-30-26)
+    implementation("com.acmerobotics.slothboard:dashboard:0.2.4+0.5.1")
+
+    implementation("com.acmerobotics.roadrunner:ftc:0.1.25") {
+        exclude group: "com.acmerobotics.dashboard"
+    }
+    implementation ("com.acmerobotics.roadrunner:actions:1.0.1"){
+        exclude group: "com.acmerobotics.dashboard"
+    }
+
+
+    //Panels
+    implementation("com.bylazar.sloth:fullpanels:0.2.4+1.0.12")
+
+
 }
